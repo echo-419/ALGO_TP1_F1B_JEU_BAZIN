@@ -1,0 +1,73 @@
+algo pendu
+//BUT:faire un jeu de pendu
+//ENTRER:le mot a trouver
+//SORTIE:le nom du joueur perdant
+
+
+fonction radar(c:CARACTERE;ch:CHAINE):BOOLEEN	//test si une lettre est dans une chaine
+
+VAR
+	rad:BOOLEEN
+	i:ENTIER
+DEBUT
+	rad<-FAUX
+	i<-1
+	TANTQUE (rad=FAUX) ET (i=LONGEUR(ch)) FAIRE
+		SI ch[i]=c ALORS
+			rad<-VRAI
+		FINSI
+		i<-(i+1)
+	FINTANTQUE
+	radar<-rad
+FIN
+
+FONCTION radra2(c:CARACTERE;motr,motc:CHAINE):chaine 	
+//affectation d'un lettre d'un dans un autre
+
+VAR
+	mots:CHAINE
+	i:ENTIER
+
+DEBUT
+	mots=motc
+	POUR i DE 1 A LONGUEUR(motr) FAIRE
+	debut
+		SI c=motr[i] ALORS
+			mots[i]<-c
+		FINSI
+	FINPOUR
+	radar2<-mots
+FIN
+
+VAR
+	mot,mot2:CHAINE
+	c:CARACTERE
+	i,vie:ENTIER
+
+DEBUT
+	vie<-6
+	ECRIRE"entrer un mot"
+	LIRE mot
+	mot2<-""
+	POUR i DE 1 A LONGUEUR(mot) FAIRE
+		mot2[i]<-"_"
+	FINPOUR
+	TANT QUE vie>0 FAIRE
+		ECRIRE"entrer un caractere"
+		LIRE c
+		SI radar(c,mot) ALORS
+			mot2<-radar2(c,mot,mot2)
+		SINON
+			vie<-vie-1
+		FINSI
+		ECRIRE mot2
+		ECRIRE"il vous reste "&vie&" essai"
+	FINTANTQUE
+	SI vie=0 ALORS
+		ECRIRE" GAME OVER"
+	SINON
+		ECRIRE"VOCTOIRE"
+	FINSI
+FIN
+
+

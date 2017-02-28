@@ -1,0 +1,131 @@
+algo nim
+//BUT:faire un jeu de nim a 2 joueurs
+//ENTRER:le nombre de batonnet retirer
+//SORTIE:le nom du joueur perdant
+
+TYPE
+	nballumette: ENTIER
+	resutattest: ENTIER	
+	joueurJ:ENTIER
+
+PROCEDURE test_allumette(nballumette:ENTIER;var resultattest:ENTIER)					//test du nombre d'allumette restante
+
+Debut
+	SI nballumette > 2 ALORS
+		resutattest<-0
+	FINSI
+
+	SI nballumette = 2 ALORS
+		resutattest<-1
+	FINSI
+
+	SI nballumette =1 ALORS
+		resutattest<-2
+	FINSI
+Fin
+
+PROCEDURE allumette_moins (joueurJ:ENTIER;resustattest:ENTIER;var nballumette:ENTIER) 		// un joueur enleve des allumette
+VAR
+	nbretiter:ENTIER
+
+Debut
+	SI joueurJ=1 ALORS
+		ECRIRE"C'est au joueur 1 de joueur"
+	SINON
+		ECRIRE"C'est au joueur 2 de joueur"
+	FINSI
+
+	ECRIRE" il y a "&nballumette&" allumettes"												//combien il reste d'allumette
+
+	CAS resultattest PARMI
+		0:ECRIRE" Combien enlevez vous d'allumette: 1,2 ou 3 ?" 
+		1:ECRIRE" Combien enlevez vous d'allumette: 1 ou 2 ?" 
+		2:ECRIRE" Combien enlevez vous d'allumette: 1 ou 1  ?"
+	FINCASPARMI
+
+	LIRE nbretirer
+
+	SI nballumette > nbretirer faire 														// on ne retire pas plus d'allumette que possible
+		nballumette<-nballumette - nbretirer 				
+	FINSI
+
+FIN
+
+PROCUDURE commence(var joueurJ:ENTIER) 														// definir que le joueur 1 commencera
+
+
+Debut
+	ECRIRE"Le joueur 1 commence"
+	joueurJ<-1
+FIN
+
+PROCEDURE switch (var joueurJ:ENTIER)														//changement de joueur
+
+DEBUT
+	SI joueurJ=1 ALORS
+		joueurJ<-2
+	FINSI
+
+	SI joueurJ=2 ALORS
+		joueurJ<-1
+	FINSI
+FIN
+
+
+
+DEBUT
+
+	nballuette<-21										//initialisation du nombre d'allumette
+
+	commencer 											
+
+	REPETER
+
+		test_allumette									// verif du nombre d'allumette restante
+		allumette_moins 								//soustraction d'allumette par un joueur
+		switch 											//changement de joueur
+
+	JUSQU'A resultattest=2								//il n'y a plus qu'une allumette
+
+	switch
+	ECRIRE"Le joueur "&joueurJ&" a perdu"				
+FIN
+
+
+							JEU D'ESSAI
+
+							C'est au joueur 1 de joueur
+							il y a 21 allumettes
+							Combien enlevez vous d'allumette: 1,2 ou 3?
+							3
+
+							C'est au joueur 2 de joueur
+							il y a 18 allumettes
+							Combien enlevez vous d'allumette: 1,2 ou 3?
+							2
+
+							C'est au joueur 1 de joueur
+							il y a 16 allumettes
+							Combien enlevez vous d'allumette: 1,2 ou 3?
+							..
+
+							....
+
+							C'est au joueur .. de joueur
+							il y a 2 allumettes
+							Combien enlevez vous d'allumette: 1 ou 2?
+							1
+
+							C'est au joueur .. de joueur
+							il y a 1 allumettes
+							Combien enlevez vous d'allumette: 1 ou 1?
+							1
+
+							Le joueur .. a perdu
+
+
+
+
+
+
+	
